@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pato_burguer/TelaLog.dart';
+import 'package:pato_burguer/log_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,18 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color minhaCor = const Color(0xFF9B0D);
-    return MaterialApp(
-      home: Directionality(
-        textDirection: TextDirection.ltr, // Defina a direcionalidade aqui
-        child: Scaffold(
-          backgroundColor: minhaCor,
-          body: Center(
-            child: Column(
-              children: const [CircularProgressIndicator()],
-            ),
-          ),
-        ),
-      ),
+    return MaterialApp(title: "testando",
+    home: logPage(),
     );
+    }
   }
-}
