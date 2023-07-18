@@ -7,7 +7,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// pica ++ aaaaaaaaaa
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
