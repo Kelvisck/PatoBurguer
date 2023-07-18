@@ -54,7 +54,9 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - lib/assets/recursos/
+    - lib/assets/recursos/cardapio.png
+    - lib/assets/recursos/contato.png
+    - lib/assets/recursos/config.png
 
 
 
