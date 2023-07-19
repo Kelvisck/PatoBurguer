@@ -1,30 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pato_burguer/assets/constantes.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
-              scopes:[
-              'email',
-              'https://www.googleapis.com/auth/contacts.readonly'],
-            );
+  scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly'],
+);
 
-class Login extends StatelessWidget{
+class Login extends StatelessWidget {
+  final Widget textoBotao = Positioned(
+    top: 10,
+    left: 30,
+    child: TextButton(
+      onPressed: () {},
+      child: Text(
+        'Esqueceu a senha?',
+        style: TextStyle(decoration: TextDecoration.underline),
+      ),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Card(
-      margin: const EdgeInsets.all(20),
-      color: Color(0xFFFAFAFA),
-      //child: Padding (const EdgeInsets.all(16)),
-      child: Form(
-        child: Column(
-          children: [
-            TextFormField(decoration: InputDecoration(labelText:"Usuário(a)" )
-            ),
-            TextFormField(decoration: InputDecoration(labelText:"Senha" )
-            ),
-          ],
-        )
-      )
+    return Column(
+      children: [
+        Container(
+          // width: 380,
+          //height: 346,
+          child: Card(
+            margin: const EdgeInsets.all(20),
+            child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                    child: Column(
+                  children: [
+                    TextFormField(
+                        decoration: InputDecoration(labelText: "Usuário(a)")),
+                    TextFormField(
+                        decoration: InputDecoration(labelText: "Senha")),
+                    Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: textoBotao,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 34),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Entrar'),
+                      style: ButtonStyle(
+                          fixedSize:
+                              MaterialStateProperty.all<Size>(Size(400, 50)),
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                              Constantes.corFundo)),
+                    ),
+                  ],
+                ))),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -49,3 +84,5 @@ class logPage extends StatelessWidget{
   );
   }
 }*/
+
+
