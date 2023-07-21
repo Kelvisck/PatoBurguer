@@ -41,26 +41,58 @@ class AlterarCardapio extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: "Roboto",
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w800,
                                 color: Color(0xFFFFB54B)),
                           ),
                         ),
                         Align(
                           alignment: Alignment(-1, -0.88),
-                          child: Container(
-                              height: 54,
-                              width: 370,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Color(0xFF747474), width: 1.0)),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment(-0.96, 0.5),
-                                    child: Text('AV. Campo Grande, 66'),
-                                  )
-                                ],
-                              )),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                  padding: EdgeInsets.only(
+                                      top: 5, left: 5, bottom: 5),
+                                  height: 54,
+                                  width: 370,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Color(0xFF747474),
+                                          width: 1.0)),
+                                  child: Stack(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment(-1, -0.9),
+                                        child: Text(
+                                          'AV. Campo Grande, 66',
+                                          style: TextStyle(
+                                              color: Color(0xFFFFB54B),
+                                              fontFamily: 'Roboto',
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: Image.asset(
+                                              'lib/assets/recursos/editar.png')),
+                                      Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Text(
+                                          'Campo Grande-MS',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Roboto',
+                                              color: Color(0xFFFFB54B),
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ],
+                          ),
                         )
                       ],
                     ),

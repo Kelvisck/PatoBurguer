@@ -60,6 +60,7 @@ flutter:
     - lib/assets/recursos/cardapio.png
     - lib/assets/recursos/contato.png
     - lib/assets/recursos/config.png
+    - lib/assets/recursos/editar.png
 
   
 

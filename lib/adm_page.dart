@@ -154,7 +154,7 @@ class AdmPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ))),
             child: Align(
-              alignment: Alignment.centerLeft, // Define o alinhamento do texto
+              alignment: Alignment.centerLeft,
               child: Row(
                 children: [
                   Text(
