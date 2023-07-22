@@ -1,20 +1,31 @@
+import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'AuthLogFunction.dart';
 
-final FirebaseAuth auth = FirebaseAuth.instance;
+final _firebaseAuth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
 login() async{
   try {
-    UserCredential userCredential = await _firebaseAuth.singInWithEmailAndPassoword(
+    UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
       email: _emailController.text,
       password: _passwordController.text
     );
-  }
+    if(userCredential != null){
+      Navigator.pushReplacement(
+        context as BuildContext,
+        MaterialPageRoute(
+          builder: (context) => AdmPage(),
+        ),
+      );
+    }
+
+  } on FirebaseAuthException catch (e) {}
 }
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -36,7 +47,9 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
+    return Stack(
+      children: [
+        Column(
       children: [
         Container(
           width: 450,
@@ -65,6 +78,7 @@ class Login extends StatelessWidget {
                       color: Colors.white,
                     ),
                     TextFormField(
+                      controller: _emailController,
                       autofocus: true,
                       keyboardType: TextInputType.emailAddress,
                       style: new TextStyle(
@@ -79,18 +93,20 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     TextFormField(
+                      controller: _passwordController,
                       autofocus: true,
-                      obscureText: true,
+                      obscureText: false,
                       keyboardType: TextInputType.text,
                       style: new TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         fontFamily: Constantes.fonteRoboto,
-                        fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        labelText: "Senha",
-                        labelStyle: TextStyle(color: Colors.black)
+                        fontWeight: FontWeight.bold
                       ),
+                        decoration: InputDecoration(
+                          labelText: "Senha",
+                          labelStyle: TextStyle(color: Colors.black)
+                        ),
                     ),
                     Stack(
                       children: [
@@ -105,7 +121,9 @@ class Login extends StatelessWidget {
                     ),
                     SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        login();
+                      },
                       child: Text('Entrar'),
                       style: ButtonStyle(
                           fixedSize:
@@ -114,10 +132,14 @@ class Login extends StatelessWidget {
                               Constantes.corFundo)),
                     ),
                   ],
-                ))),
+                )
+              )
+            ),
           ),
         ),
-      ],
+       ],
+      ),
+     ],
     );
   }
 }

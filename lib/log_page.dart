@@ -9,12 +9,12 @@ class logPage extends StatelessWidget {
       backgroundColor: Color(0xFFFF9B0D),
       body: Stack(
         children: [
-          Positioned(
+          /*Positioned(
         top: 60,
         left: 95,
         child: Image.asset("lib/assets/recursos/icone_app_admin.png", width: 206, height: 189,
           ),
-        ),
+        ),*/
         Stack(
           children:[
             Container(

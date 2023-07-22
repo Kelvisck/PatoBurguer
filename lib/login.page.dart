@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset("lib/assets/recursos/icone_app_admin.png", width: 206, height: 189,),
+              /*Image.asset("lib/assets/recursos/icone_app_admin.png", width: 206, height: 189,),*/
               TextFormField(
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
