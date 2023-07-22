@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
+import 'package:pato_burguer/assets/widgetsFunctions.dart';
 
 class AlterarCardapio extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class AlterarCardapio extends StatelessWidget {
           ),
           Positioned(
               top: 102,
+              //container de fundo ------------------------------------------------------------------
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height - 102,
@@ -30,20 +32,14 @@ class AlterarCardapio extends StatelessWidget {
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18))),
                 child: Padding(
-                  padding: const EdgeInsets.all(17.0),
+                  /*padding: const EdgeInsets.all(17.0),*/
+                  padding: const EdgeInsets.only(top: 17, bottom: 17),
                   child: Card(
                     child: Stack(
                       children: [
                         Align(
-                          alignment: Alignment(-1, -1),
-                          child: Text(
-                            'Endereço:',
-                            style: TextStyle(
-                                fontFamily: "Roboto",
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xFFFFB54B)),
-                          ),
+                          alignment: Alignment(-0.89, -1),
+                          child: titulosApp('Endereço:'),
                         ),
                         Align(
                           alignment: Alignment(-1, -0.88),
@@ -52,6 +48,8 @@ class AlterarCardapio extends StatelessWidget {
                               SizedBox(
                                 height: 30,
                               ),
+
+                              // container endereço ------------------------------------------------------ C
                               Container(
                                   padding: EdgeInsets.only(
                                       top: 5, left: 5, bottom: 5),
@@ -59,16 +57,17 @@ class AlterarCardapio extends StatelessWidget {
                                   width: 370,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: Color(0xFF747474),
-                                          width: 1.0)),
+                                          color: Constantes.CorBorda,
+                                          width: 1.0),
+                                      borderRadius: BorderRadius.circular(5)),
                                   child: Stack(
                                     children: [
                                       Align(
-                                        alignment: Alignment(-1, -0.9),
+                                        alignment: Alignment(-1, -0.7),
                                         child: Text(
                                           'AV. Campo Grande, 66',
                                           style: TextStyle(
-                                              color: Color(0xFFFFB54B),
+                                              color: Constantes.CorTexto1,
                                               fontFamily: 'Roboto',
                                               fontSize: 15,
                                               fontWeight: FontWeight.w600),
@@ -85,12 +84,42 @@ class AlterarCardapio extends StatelessWidget {
                                           style: TextStyle(
                                               fontSize: 12,
                                               fontFamily: 'Roboto',
-                                              color: Color(0xFFFFB54B),
+                                              color: Constantes.CorTexto1,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
                                     ],
                                   )),
+                              // linha ---------------------------- ?
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Align(
+                                child: Divider(
+                                  color: Colors.grey,
+                                  thickness: 1.0,
+                                  indent: 0,
+                                  endIndent: 0,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment(-0.72, -0.4),
+                                child: titulosApp('Horários de Funcionamento:'),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              CamposEditarHorario(
+                                  'Segunda à sexta', '18:00 - 1:00'),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              CamposEditarHorario('Sábado', '18:00 - 3:00'),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              CamposEditarHorario(
+                                  'Domingos e Feriados', '18:00 - 00:00')
                             ],
                           ),
                         )
