@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './assets/constantes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,13 +20,14 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Image.asset("lib/assets/recursos/icone_app_admin.png", width: 206, height: 189,),
               TextFormField(
                 autofocus: true,
-                keyboardType: TextInputType.number,
-                style: new TextStyle(color: Colors.white, fontSize: 20),
+                keyboardType: TextInputType.emailAddress,
+                style: new TextStyle(color: Colors.black, fontSize: 20, fontFamily: Constantes.fonteRoboto),
                 decoration: InputDecoration(
-                  labelText: "CPF",
-                  labelStyle: TextStyle(color: Colors.white)
+                  labelText: "E-mail",
+                  labelStyle: TextStyle(color: Colors.black)
                 ),
               ),
               Divider(),
@@ -49,11 +51,13 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color:Color(0xFFFF9B0D))
                   )
                 )
-                )       
+                ),
+                Divider(),
+                   
             ],
           ),
-        ),
-      )
-    );
+            ),
+          )
+          );
   }
 }
