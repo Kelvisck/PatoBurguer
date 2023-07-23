@@ -61,6 +61,7 @@ flutter:
     - lib/assets/recursos/contato.png
     - lib/assets/recursos/config.png
     - lib/assets/recursos/editar.png
+    - lib/assets/recursos/contato.png
 
   
 

@@ -49,3 +49,12 @@ Widget CamposEditarHorario(String textoDia, String textoHorario) {
     ),
   );
 }
+
+Widget linhaCinza() {
+  return Divider(
+    color: Colors.grey,
+    thickness: 1.0,
+    indent: 0,
+    endIndent: 0,
+  );
+}

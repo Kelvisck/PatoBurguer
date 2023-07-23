@@ -95,12 +95,7 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 10,
                               ),
                               Align(
-                                child: Divider(
-                                  color: Colors.grey,
-                                  thickness: 1.0,
-                                  indent: 0,
-                                  endIndent: 0,
-                                ),
+                                child: linhaCinza(),
                               ),
                               Align(
                                 alignment: Alignment(-0.72, -0.4),
@@ -119,7 +114,20 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 5,
                               ),
                               CamposEditarHorario(
-                                  'Domingos e Feriados', '18:00 - 00:00')
+                                  'Domingos e Feriados', '18:00 - 00:00'),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              linhaCinza(),
+                              Align(
+                                alignment: Alignment(-0.79, -1),
+                                child: titulosApp('Faça seu pedido em:'),
+                              ),
+                              Row(
+                                children: [
+                                  Image.asset('lib/assets/recursos/contato.png')
+                                ],
+                              )
                             ],
                           ),
                         )
