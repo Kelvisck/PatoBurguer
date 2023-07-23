@@ -1,12 +1,9 @@
 //import 'dart:js';
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pato_burguer/reset-password-page.dart';
 import 'AuthLogFunction.dart';
 
 final _firebaseAuth = FirebaseAuth.instance;
@@ -20,7 +17,7 @@ login(BuildContext context) async {
             email: _emailController.text, password: _passwordController.text);
     if (userCredential != null) {
       Navigator.pushReplacement(
-        context,
+        context as BuildContext,
         MaterialPageRoute(
           builder: (context) => AdmPage(),
         ),
@@ -35,18 +32,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly'],
 );
 
-class resetPass extends StatelessWidget {
+class Login extends StatelessWidget {
   final Widget textoBotao = Positioned(
     top: 10,
     left: 30,
     child: TextButton(
-      onPressed: () {
-        Navigator.pushReplacement(
-          context as BuildContext,
-          MaterialPageRoute(builder: (context) => ResetPassword()
-          )
-        );
-      },
+      onPressed: () {},
       child: Text(
         'Esqueceu a senha?',
         style: TextStyle(decoration: TextDecoration.underline),
