@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pato_burguer/reset-password-page.dart';
 import 'AuthLogFunction.dart';
 
 final _firebaseAuth = FirebaseAuth.instance;
@@ -33,17 +34,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 );
 
 class Login extends StatelessWidget {
-  final Widget textoBotao = Positioned(
-    top: 10,
-    left: 30,
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        'Esqueceu a senha?',
-        style: TextStyle(decoration: TextDecoration.underline),
-      ),
-    ),
-  );
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -107,9 +97,21 @@ class Login extends StatelessWidget {
                         ),
                         Stack(
                           children: [
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: textoBotao,
+                            Container(
+                              height: 40,
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                child: Text(
+                                  "Alterar Senha",
+                                  textAlign: TextAlign.right,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(context,
+                                   MaterialPageRoute(builder: (context) => ResetPassword()
+                                   )
+                                  );
+                                },
+                                ),
                             )
                           ],
                         ),
@@ -141,6 +143,18 @@ class Login extends StatelessWidget {
 /*import 'package:flutter/material.dart';
 import 'package:pato_burguer/TelaLog.dart';
 
+
+final Widget textoBotao = Positioned(
+    top: 10,
+    left: 30,
+    child: TextButton(
+      onPressed: () {},
+      child: Text(
+        'Esqueceu a senha?',
+        style: TextStyle(decoration: TextDecoration.underline),
+      ),
+    ),
+  );
 class logPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
