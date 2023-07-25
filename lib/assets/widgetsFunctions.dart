@@ -87,6 +87,7 @@ Widget redesSociais(String icon, String texto) {
                       color: Constantes.CorBorda,
                       width: 1.0,
                     ),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   child: Stack(
                     children: [

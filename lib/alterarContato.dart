@@ -146,10 +146,17 @@ class AlterarCardapio extends StatelessWidget {
                               redesSociais('lib/assets/recursos/instagram.png',
                                   '@patoburguer'),
                               SizedBox(
-                                height: 18,
+                                height: 24,
                               ),
                               ElevatedButton(
                                 style: ButtonStyle(
+                                    minimumSize: MaterialStateProperty.all(
+                                        Size(300, 50)),
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    )),
                                     backgroundColor:
                                         MaterialStatePropertyAll<Color>(
                                             Constantes.corFundo)),
