@@ -124,67 +124,27 @@ class AlterarCardapio extends StatelessWidget {
                                 child: titulosApp('Faça seu pedido em:'),
                               ),
                               SizedBox(
-                                height: 22,
+                                height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 19),
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Align(
-                                            alignment: Alignment(-0.29, 0.9),
-                                            child: Image.asset(
-                                              'lib/assets/recursos/whatsapp.png',
-                                              height: 30,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                          Align(
-                                            alignment: Alignment(-0.60, 0.2),
-                                            child: Container(
-                                              height: 31,
-                                              width: 210,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  color: Constantes.CorBorda,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                              child: Stack(
-                                                children: [
-                                                  Align(
-                                                    child: Text(
-                                                      '(67) 4002-8922',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          color: Constantes
-                                                              .CorTexto1,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 18),
-                                                    ),
-                                                    alignment:
-                                                        Alignment(-0.82, 0.0),
-                                                  ),
-                                                  Align(
-                                                    alignment: Alignment(1, 1),
-                                                    child: Image.asset(
-                                                        'lib/assets/recursos/editar.png'),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
+                              redesSociais('lib/assets/recursos/whatsapp.png',
+                                  '(67) 40028922'),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Align(
+                                alignment: Alignment(-0.79, -0.5),
+                                child: titulosApp('Redes Sociais:'),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              redesSociais('lib/assets/recursos/facebook.png',
+                                  'PatoBurguerOficial'),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              redesSociais('lib/assets/recursos/instagram.png',
+                                  '@patoburguer')
                             ],
                           ),
                         )

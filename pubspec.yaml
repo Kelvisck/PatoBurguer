@@ -64,6 +64,10 @@ flutter:
     - lib/assets/recursos/contato.png
     - lib/assets/recursos/whatsapp.png
     - lib/assets/recursos/whatsapp.ico
+    - lib/assets/recursos/facebook.png
+    - lib/assets/recursos/instagram.png
+    
+    
 
   
 
