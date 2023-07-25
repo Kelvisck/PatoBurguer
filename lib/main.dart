@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/TelaLog.dart';
 import 'package:pato_burguer/adm_page.dart';
-import 'package:pato_burguer/alterarCardapio.dart';
+import 'package:pato_burguer/alterarContato.dart';
 import 'package:pato_burguer/log_page.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';

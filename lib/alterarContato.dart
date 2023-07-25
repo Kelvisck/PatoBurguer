@@ -161,7 +161,11 @@ class AlterarCardapio extends StatelessWidget {
                                         MaterialStatePropertyAll<Color>(
                                             Constantes.corFundo)),
                                 onPressed: () {},
-                                child: Text('Salvar'),
+                                child: Text(
+                                  'Salvar',
+                                  style: TextStyle(
+                                      fontSize: 24, fontFamily: 'Poppins-Bold'),
+                                ),
                               )
                             ],
                           ),

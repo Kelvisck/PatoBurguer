@@ -66,6 +66,11 @@ flutter:
     - lib/assets/recursos/whatsapp.ico
     - lib/assets/recursos/facebook.png
     - lib/assets/recursos/instagram.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: lib/assets/fontes/Poppins-Bold.ttf
     
     
 
