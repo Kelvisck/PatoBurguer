@@ -33,7 +33,7 @@ class AlterarCardapio extends StatelessWidget {
                         topRight: Radius.circular(18))),
                 child: Padding(
                   /*padding: const EdgeInsets.all(17.0),*/
-                  padding: const EdgeInsets.only(top: 17, bottom: 17),
+                  padding: const EdgeInsets.only(top: 17, bottom: 17, left: 0),
                   child: Card(
                     child: Stack(
                       children: [
@@ -105,11 +105,11 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 10,
                               ),
                               CamposEditarHorario(
-                                  'Segunda à sexta', '18:00 - 1:00'),
+                                  'Segunda à sexta', '18:00 - 01:00'),
                               SizedBox(
                                 height: 5,
                               ),
-                              CamposEditarHorario('Sábado', '18:00 - 3:00'),
+                              CamposEditarHorario('Sábado', '18:00 - 03:00'),
                               SizedBox(
                                 height: 5,
                               ),
@@ -123,10 +123,67 @@ class AlterarCardapio extends StatelessWidget {
                                 alignment: Alignment(-0.79, -1),
                                 child: titulosApp('Faça seu pedido em:'),
                               ),
-                              Row(
-                                children: [
-                                  Image.asset('lib/assets/recursos/contato.png')
-                                ],
+                              SizedBox(
+                                height: 22,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 19),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment(-0.29, 0.9),
+                                            child: Image.asset(
+                                              'lib/assets/recursos/whatsapp.png',
+                                              height: 30,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Align(
+                                            alignment: Alignment(-0.60, 0.2),
+                                            child: Container(
+                                              height: 31,
+                                              width: 210,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Constantes.CorBorda,
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  Align(
+                                                    child: Text(
+                                                      '(67) 4002-8922',
+                                                      style: TextStyle(
+                                                          fontFamily: 'Roboto',
+                                                          color: Constantes
+                                                              .CorTexto1,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 18),
+                                                    ),
+                                                    alignment:
+                                                        Alignment(-0.82, 0.0),
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment(1, 1),
+                                                    child: Image.asset(
+                                                        'lib/assets/recursos/editar.png'),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
