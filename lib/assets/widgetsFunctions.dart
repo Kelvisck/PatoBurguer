@@ -117,3 +117,50 @@ Widget redesSociais(String icon, String texto) {
     ),
   );
 }
+
+//-------------------------------------------- ADM----------------------------------------------
+
+Widget butaoAdm(String texto, String icone) {
+  return ElevatedButton(
+    onPressed: () {},
+    style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all<Size>(Size(240, 50)),
+        backgroundColor:
+            MaterialStateProperty.all<Color>(Constantes.CorfundoBranca),
+        elevation: MaterialStateProperty.all<double>(10),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ))),
+    child: Align(
+      alignment: Alignment.centerLeft, // Define o alinhamento do texto
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              texto,
+              style: TextStyle(
+                  color: Constantes.corFundo,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w800,
+                  fontSize: 16),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: ColorFiltered(
+              colorFilter:
+                  ColorFilter.mode(Constantes.corFundo, BlendMode.srcATop),
+              child: Image.asset(
+                icone,
+                height: 40,
+                width: 50,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}

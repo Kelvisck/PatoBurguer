@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
 
-class AlterarCardapio extends StatelessWidget {
+class AlterarContato extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(Constantes.corFundo.value),

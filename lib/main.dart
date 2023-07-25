@@ -32,10 +32,9 @@ class MyApp extends StatelessWidget {
     //Color minhaCor = const Color(0xFFFF9B0D);
     return MaterialApp(
       title: "PatoBurguer",
-      home: logPage(),
+      //home: AlterarContato(),
       //home: ResetPassword()
-      //home: AdmPage(),
-      //home: AlterarCardapio(),
+      home: AdmPage(),
     );
   }
 }
