@@ -21,11 +21,11 @@ class AlterarCardapio extends StatelessWidget {
             left: 130,
           ),
           Positioned(
-              top: 102,
+              top: 80,
               //container de fundo ------------------------------------------------------------------
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 102,
+                height: MediaQuery.of(context).size.height - 80,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -33,8 +33,8 @@ class AlterarCardapio extends StatelessWidget {
                         topRight: Radius.circular(18))),
                 child: Padding(
                   /*padding: const EdgeInsets.all(17.0),*/
-                  padding: const EdgeInsets.only(top: 17, bottom: 17),
-                  child: Card(
+                  padding: const EdgeInsets.only(top: 17, bottom: 17, left: 0),
+                  child: Container(
                     child: Stack(
                       children: [
                         Align(
@@ -95,12 +95,7 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 10,
                               ),
                               Align(
-                                child: Divider(
-                                  color: Colors.grey,
-                                  thickness: 1.0,
-                                  indent: 0,
-                                  endIndent: 0,
-                                ),
+                                child: linhaCinza(),
                               ),
                               Align(
                                 alignment: Alignment(-0.72, -0.4),
@@ -110,16 +105,68 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 10,
                               ),
                               CamposEditarHorario(
-                                  'Segunda à sexta', '18:00 - 1:00'),
+                                  'Segunda à sexta', '18:00 - 01:00'),
                               SizedBox(
                                 height: 5,
                               ),
-                              CamposEditarHorario('Sábado', '18:00 - 3:00'),
+                              CamposEditarHorario('Sábado', '18:00 - 03:00'),
                               SizedBox(
                                 height: 5,
                               ),
                               CamposEditarHorario(
-                                  'Domingos e Feriados', '18:00 - 00:00')
+                                  'Domingos e Feriados', '18:00 - 00:00'),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              linhaCinza(),
+                              Align(
+                                alignment: Alignment(-0.79, -1),
+                                child: titulosApp('Faça seu pedido em:'),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              redesSociais('lib/assets/recursos/whatsapp.png',
+                                  '(67) 40028922'),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Align(
+                                alignment: Alignment(-0.79, -0.5),
+                                child: titulosApp('Redes Sociais:'),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              redesSociais('lib/assets/recursos/facebook.png',
+                                  'PatoBurguerOficial'),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              redesSociais('lib/assets/recursos/instagram.png',
+                                  '@patoburguer'),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                    minimumSize: MaterialStateProperty.all(
+                                        Size(300, 50)),
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    )),
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Constantes.corFundo)),
+                                onPressed: () {},
+                                child: Text(
+                                  'Salvar',
+                                  style: TextStyle(
+                                      fontSize: 24, fontFamily: 'Poppins-Bold'),
+                                ),
+                              )
                             ],
                           ),
                         )

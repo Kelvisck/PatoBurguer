@@ -49,3 +49,71 @@ Widget CamposEditarHorario(String textoDia, String textoHorario) {
     ),
   );
 }
+
+Widget linhaCinza() {
+  return Divider(
+    color: Colors.grey,
+    thickness: 1.0,
+    indent: 0,
+    endIndent: 0,
+  );
+}
+
+Widget redesSociais(String icon, String texto) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 22),
+    child: Stack(
+      children: [
+        Container(
+          child: Row(
+            children: [
+              Align(
+                alignment: Alignment(-0.29, 0.9),
+                child: Image.asset(
+                  icon,
+                  height: 30,
+                ),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Align(
+                alignment: Alignment(-0.60, 0.2),
+                child: Container(
+                  height: 31,
+                  width: 210,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Constantes.CorBorda,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                        child: Text(
+                          texto,
+                          style: TextStyle(
+                              fontFamily: 'Roboto',
+                              color: Constantes.CorTexto1,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        ),
+                        alignment: Alignment(-0.82, 0.0),
+                      ),
+                      Align(
+                        alignment: Alignment(1, 1),
+                        child: Image.asset('lib/assets/recursos/editar.png'),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    ),
+  );
+}
