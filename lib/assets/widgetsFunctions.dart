@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pato_burguer/alterarContato.dart';
 import 'constantes.dart';
 
 Widget titulosApp(String texto) {
@@ -120,9 +121,12 @@ Widget redesSociais(String icon, String texto) {
 
 //-------------------------------------------- ADM----------------------------------------------
 
-Widget butaoAdm(String texto, String icone) {
+Widget butaoAdm(
+    String texto, String icone, BuildContext context, Widget destino) {
   return ElevatedButton(
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => destino));
+    },
     style: ButtonStyle(
         fixedSize: MaterialStateProperty.all<Size>(Size(240, 50)),
         backgroundColor:

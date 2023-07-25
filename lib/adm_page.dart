@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pato_burguer/alterarContato.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
 import './assets/constantes.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
@@ -49,27 +50,26 @@ class AdmPage extends StatelessWidget {
           top: 144,
           left: 34,
         ),
-        Positioned(
+        // ----------- botao 1 --------------------------------------------------//
+        /*Positioned(
             top: 232,
             left: 70,
-            child: butaoAdm(
-                'Alterar Cardápio', 'lib/assets/recursos/cardapio.png')),
+            child: butaoAdm('Alterar Cardápio',
+                'lib/assets/recursos/cardapio.png', context, cardapioAltera())),*/
 
-        // ----------- botao 1 --------------------------------------------------//
+        // botao 2  -------------------------------------------------------------//
+
         Positioned(
             top: 312,
             left: 70,
-            child:
-                butaoAdm('Alterar Contato', 'lib/assets/recursos/contato.png')),
+            child: butaoAdm('Alterar Contato',
+                'lib/assets/recursos/contato.png', context, AlterarContato())),
 
-        // botao 2 /\ -------------------------------------------------------------//
-
-        Positioned(
+        //----------------botao 3 ---------------------------
+        /* Positioned(
             top: 392,
             left: 70,
-            child: butaoAdm('Alterar Senha', 'lib/assets/recursos/config.png')),
-
-        //----------------botao 3 /\---------------------------
+            child: butaoAdm('Alterar Senha', 'lib/assets/recursos/config.png', context, reset-password-page())),*/
       ],
     ));
   }
