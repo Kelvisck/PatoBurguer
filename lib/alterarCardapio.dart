@@ -21,11 +21,11 @@ class AlterarCardapio extends StatelessWidget {
             left: 130,
           ),
           Positioned(
-              top: 102,
+              top: 80,
               //container de fundo ------------------------------------------------------------------
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 102,
+                height: MediaQuery.of(context).size.height - 80,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -34,7 +34,7 @@ class AlterarCardapio extends StatelessWidget {
                 child: Padding(
                   /*padding: const EdgeInsets.all(17.0),*/
                   padding: const EdgeInsets.only(top: 17, bottom: 17, left: 0),
-                  child: Card(
+                  child: Container(
                     child: Stack(
                       children: [
                         Align(
@@ -144,7 +144,18 @@ class AlterarCardapio extends StatelessWidget {
                                 height: 10,
                               ),
                               redesSociais('lib/assets/recursos/instagram.png',
-                                  '@patoburguer')
+                                  '@patoburguer'),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Constantes.corFundo)),
+                                onPressed: () {},
+                                child: Text('Salvar'),
+                              )
                             ],
                           ),
                         )
