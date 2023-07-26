@@ -5,7 +5,7 @@ import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pato_burguer/reset-password-page.dart';
-import 'AuthLogFunction.dart';
+
 
 final _firebaseAuth = FirebaseAuth.instance;
 final _emailController = TextEditingController();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pato_burguer/alterarContato.dart';
 import 'constantes.dart';
 
 Widget titulosApp(String texto) {
@@ -168,3 +167,31 @@ Widget butaoAdm(
     ),
   );
 }
+
+/*Widget formSenha {
+  bool _showpassord = false;
+  return TextFormField(
+                     style: new TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontFamily: Constantes.fonteRoboto,
+                            ),
+                          decoration: InputDecoration(
+                              icon: Icon(Icons.lock, color:  Colors.black,),
+                              hintText: "Senha",
+                              hintStyle: TextStyle(color: Colors.black),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              suffixIcon: GestureDetector(
+                                child: Icon(_showpassord == false ? Icons.visibility_off: Icons.visibility,color: Colors.black,),
+                                onTap: () {
+                                  setState((){
+                                    _showpassord = !_showpassord;
+                                  });
+                                },
+                              )
+                            ),
+                            obscureText: _showpassord == false ? true: false,
+                        );
+}*/
