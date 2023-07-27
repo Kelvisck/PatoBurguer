@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pato_burguer/change-password-page.dart';
 import 'package:pato_burguer/reset-password-page.dart';
 
 
@@ -84,7 +85,7 @@ class Login extends StatelessWidget {
                         TextFormField(
                           controller: _passwordController,
                           autofocus: true,
-                          obscureText: false,
+                          obscureText: true,
                           keyboardType: TextInputType.text,
                           style: new TextStyle(
                               color: Colors.black,
@@ -102,12 +103,12 @@ class Login extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 child: Text(
-                                  "Alterar Senha",
+                                  "Esqueceu a Senha?",
                                   textAlign: TextAlign.right,
                                 ),
                                 onPressed: () {
                                   Navigator.push(context,
-                                   MaterialPageRoute(builder: (context) => ResetPassword()
+                                   MaterialPageRoute(builder: (context) => ResetPassoword()
                                    )
                                   );
                                 },

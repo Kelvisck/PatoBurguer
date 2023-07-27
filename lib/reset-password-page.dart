@@ -1,23 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({super.key});
 
-  @override
-  State<ResetPassword> createState() => _ResetPasswordState();
-}
-
-class _ResetPasswordState extends State<ResetPassword> {
-
-  bool _showpassord = false;
+class ResetPassoword extends StatelessWidget {
+  const ResetPassoword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(Constantes.corFundo.value),
       body: Stack(
-        
         children: [
           Positioned(
             top: 22,
@@ -33,16 +27,25 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
           Positioned(
             child: Text(
-              'Alterar Senha',
-              style: TextStyle(
+              'Recuperação de Senha',
+              style: 
+               TextStyle(
                   fontFamily: 'Roboto',
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
-                  fontSize: 24),
+                  fontSize: 24
+               ),
             ),
             top: 32,
-            left: 120,
+            left: 80,
           ),
+          /*Positioned(
+            child:
+             //Image.asset("assets/recursos/logo"),
+            Image.file(File("assets/recursos/pato-bolado-senha.png")),
+            top: 32,
+            left: 80,
+            ),*/
           Positioned(
               top: 110,
               left: 23,
@@ -63,97 +66,41 @@ class _ResetPasswordState extends State<ResetPassword> {
                       )
                     ),
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.only(
+                      top: 100,
+                      left: 40,
+                      right: 40,
+                    ),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Align(
-                          alignment: 
-                            Alignment(-1, 0),
-                          child: 
-                            textoSimples("Senha Atual", 21),
-                        ),
-                        TextFormField(
-                          autofocus: true,
-                          style: new TextStyle(
+                          SizedBox(
+                            width: 10,
+                            height: 10,
+                            ),
+                          Align(
+                            alignment: 
+                              Alignment(0, 0),
+                            child: 
+                              textoSimples("Esqueceu sua Senha?", 24),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Align(
+                            alignment: 
+                            Alignment(0 , 0),
+                            child: Text(
+                              "Insira seu E-mail logado em sua conta para que possamos enviar um link com instruções sobre a recuperação de senha",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: Constantes.fonteRoboto,
-                              ),
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(7))
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(7))
-                              ),
-                              //labelText: "Senha Atual",
-                              labelStyle: TextStyle(
-                                color: Colors.black,
+                                fontSize: 13,
                                 fontFamily: 'Roboto',
                               ),
-                              suffixIcon: GestureDetector(
-                                child: Icon(_showpassord == false ? Icons.visibility_off: Icons.visibility,color: Colors.black,),
-                                onTap: () {
-                                  setState((){
-                                   _showpassord = !_showpassord;
-                                  });
-                                },
-                              )
                             ),
-                              obscureText: _showpassord == false ? true: false,
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          Align(
-                            alignment: 
-                              Alignment(-1, 0),
-                            child: 
-                              textoSimples("Nova Senha", 21),
-                          ),
-                          TextFormField(
-                            autofocus: true,
-                            style: new TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: Constantes.fonteRoboto,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                                border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(7))
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(7))
-                                ),
-                                //labelText: "Nova Senha",
-                                labelStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Roboto',
-                                  ),
-                                suffixIcon: GestureDetector(
-                                  child: Icon(_showpassord == false ? Icons.visibility_off: Icons.visibility,color: Colors.black,),
-                                  onTap: () {
-                                    setState((){
-                                      _showpassord = !_showpassord;
-                                    });
-                                  },
-                                )
-                              ),
-                              obscureText: _showpassord == false ? true: false,
-                          ),
-                          SizedBox(
-                            height: 10,
-                            ),
-                          Align(
-                            alignment: 
-                              Alignment(-1, 0),
-                            child: 
-                              textoSimples("Confirmar Senha", 21),
+                            height: 20,
                           ),
                           TextFormField(
                             autofocus: true,
@@ -170,24 +117,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(7))
                                 ),
-                                //labelText: "Confirmar Senha",
+                                hintText: "E-mail",
                                 labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Roboto',
                                 ),
-                                suffixIcon: GestureDetector(
-                                  child: Icon(_showpassord == false ? Icons.visibility_off: Icons.visibility,color: Colors.black,),
-                                  onTap: () {
-                                    setState((){
-                                      _showpassord = !_showpassord;
-                                    });
-                                  },
-                                )
                               ),
-                              obscureText: _showpassord == false ? true: false,
                           ),
                           SizedBox(
-                            height: 80,
+                            height: 30,
                           ),
                           ElevatedButton(
                                 style: ButtonStyle(
@@ -217,6 +155,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               
        ]
       ),
-      );
+    );
   }
 }
