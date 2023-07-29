@@ -6,14 +6,16 @@ class ItemCardapio {
   String _ingredientes = "";
   double _preco = 0;
   String _tipo = '';
+  String _imageUrl = '';
 
   ItemCardapio(String nome, String detalhes, String ingredientes, double preco,
-      String tipo) {
+      String tipo, String imageUrl) {
     this._nome = nome;
     this._detalhes = detalhes;
     this._ingredientes = ingredientes;
     this._preco = preco;
     this._tipo = tipo;
+    this._imageUrl = imageUrl;
   }
 
   String get nome => _nome;
@@ -44,5 +46,11 @@ class ItemCardapio {
 
   set tipo(String valor) {
     _tipo = valor;
+  }
+
+  String get image => _imageUrl;
+
+  set image(String valor) {
+    _imageUrl = valor;
   }
 }

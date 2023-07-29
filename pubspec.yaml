@@ -67,7 +67,7 @@ flutter:
     - lib/assets/recursos/whatsapp.ico
     - lib/assets/recursos/facebook.png
     - lib/assets/recursos/instagram.png
-
+    - lib/assets/recursos/pato-bacon_solo.png
   fonts:
     - family: Poppins
       fonts:
