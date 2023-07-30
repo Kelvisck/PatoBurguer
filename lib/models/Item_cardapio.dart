@@ -4,7 +4,7 @@ class ItemCardapio {
   String _nome = '';
   String _detalhes = "";
   String _ingredientes = "";
-  double _preco = 0;
+  double _preco = 0.00;
   String _tipo = '';
   String _imageUrl = '';
 

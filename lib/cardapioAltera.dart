@@ -17,7 +17,7 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
         20.0,
         'carne',
         'lib/assets/recursos/pato-bacon_solo.png'),
-    /*ItemCardapio(
+    ItemCardapio(
         'X-Lombo de pato',
         'delicioso hamburguer de lombo de pato',
         'Pão, hamburguer, lombo de pato e queijo',
@@ -30,7 +30,14 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
         'Pão, hamburguer, lombo de pato e queijo',
         22.00,
         'carne',
-        'lib/assets/recursos/pato-bacon_solo.png')*/
+        'lib/assets/recursos/pato-bacon_solo.png'),
+    ItemCardapio(
+        'X-Lombo de pata',
+        'delicioso hamburguer de lombo de pato',
+        'Pão, hamburguer, lombo de pato e queijo',
+        22.00,
+        'carne',
+        'lib/assets/recursos/pato-bacon_solo.png')
   ];
 
   void _adicionarLanche() {
@@ -57,26 +64,33 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
                     fontSize: 24),
               )),
           Positioned(
-              top: 80,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - 80,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(18),
-                        topRight: Radius.circular(18))),
-                child: GridView.custom(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  childrenDelegate: SliverChildBuilderDelegate(
-                    (context, index) => LancheCard(
-                        _itens[index]), // Utiliza a classe LancheCard
-                    childCount: _itens.length,
-                  ),
+            top: 80,
+            child: Container(
+              padding: EdgeInsets.only(left: 24, right: 24, top: 20),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height - 80,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(18),
+                      topRight: Radius.circular(18))),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
                 ),
-              ))
+                itemBuilder: (context, index) {
+                  if (index < _itens.length) {
+                    // Verifica se o índice é válido antes de retornar o LancheCard
+                    return LancheCard(_itens[index]);
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+            ),
+          )
         ],
       ),
     );
