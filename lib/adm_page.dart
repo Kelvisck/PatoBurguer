@@ -70,6 +70,8 @@ class AdmPage extends StatelessWidget {
             top: 392,
             left: 70,
             child: butaoAdm('Alterar Senha', 'lib/assets/recursos/config.png', context, reset-password-page())),*/
+
+            // Obs. Alencar: Trocar ResetPassowrd() por ChangePassword(), é a página de alterar senha, a reset é a do 'esqueci a senha'
       ],
     ));
   }

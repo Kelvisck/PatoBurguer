@@ -6,7 +6,6 @@ import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pato_burguer/reset-password-page.dart';
 
-
 final _firebaseAuth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
@@ -29,11 +28,16 @@ login(BuildContext context) async {
   }
 }
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
+/*GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly'],
-);
+);*/
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -43,7 +47,7 @@ class Login extends StatelessWidget {
           children: [
             Container(
               width: 450,
-              height: 450,
+              height: 500,
               child: Card(
                 margin: const EdgeInsets.all(20),
                 child: Padding(
@@ -52,18 +56,19 @@ class Login extends StatelessWidget {
                         child: Column(
                       children: [
                         SizedBox(
-                          height: 50,
+                          height: 100,
                         ),
-                        Positioned(
-                          left: 10,
-                          child: Text(
-                            "Login",
-                            style: new TextStyle(
-                                color: Colors.black,
-                                fontSize: 30,
-                                fontFamily: Constantes.fonteRoboto,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "Login",
+                              style: new TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontFamily: Constantes.fonteRoboto,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
                         ),
                         Divider(
                           color: Colors.white,
@@ -76,23 +81,38 @@ class Login extends StatelessWidget {
                               color: Colors.black,
                               fontSize: 20,
                               fontFamily: Constantes.fonteRoboto,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                           decoration: InputDecoration(
                               labelText: "E-mail",
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
                               labelStyle: TextStyle(color: Colors.black)),
+                        ),
+                        SizedBox(
+                          height: 15,
                         ),
                         TextFormField(
                           controller: _passwordController,
                           autofocus: true,
-                          obscureText: false,
+                          obscureText: true,
                           keyboardType: TextInputType.text,
                           style: new TextStyle(
                               color: Colors.black,
                               fontSize: 20,
                               fontFamily: Constantes.fonteRoboto,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                           decoration: InputDecoration(
                               labelText: "Senha",
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
                               labelStyle: TextStyle(color: Colors.black)),
                         ),
                         Stack(
@@ -102,16 +122,17 @@ class Login extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 child: Text(
-                                  "Alterar Senha",
+                                  "Esqueceu a Senha?",
                                   textAlign: TextAlign.right,
                                 ),
                                 onPressed: () {
-                                  Navigator.push(context,
-                                   MaterialPageRoute(builder: (context) => ResetPassword()
-                                   )
-                                  );
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ResetPassoword()));
                                 },
-                                ),
+                              ),
                             )
                           ],
                         ),
@@ -123,7 +144,13 @@ class Login extends StatelessWidget {
                           onPressed: () {
                             login(context);
                           },
-                          child: Text('Entrar'),
+                          child: Text(
+                            'Entrar',
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w600),
+                          ),
                           style: ButtonStyle(
                               fixedSize: MaterialStateProperty.all<Size>(
                                   Size(400, 50)),
@@ -135,6 +162,17 @@ class Login extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        Positioned(
+          top: -35,
+          left: 100,
+          child: SizedBox(
+            height: 200,
+            width: 200,
+            child: Image.asset(
+              "lib/assets/recursos/logo_pato_burguer.png",
+            ),
+          ),
         ),
       ],
     );
