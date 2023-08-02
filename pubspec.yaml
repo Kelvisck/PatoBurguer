@@ -68,6 +68,7 @@ flutter:
     - lib/assets/recursos/facebook.png
     - lib/assets/recursos/instagram.png
     - lib/assets/recursos/pato-bacon_solo.png
+    - lib/assets/recursos/pato-frango.png
   fonts:
     - family: Poppins
       fonts:
