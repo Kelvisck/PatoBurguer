@@ -1,6 +1,5 @@
 //import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pato_burguer/adm_page.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,15 +14,13 @@ login(BuildContext context) async {
     UserCredential userCredential =
         await _firebaseAuth.signInWithEmailAndPassword(
             email: _emailController.text, password: _passwordController.text);
-    if (userCredential != null) {
-      Navigator.pushReplacement(
-        context as BuildContext,
-        MaterialPageRoute(
-          builder: (context) => AdmPage(),
-        ),
-      );
-    }
-  } on FirebaseAuthException catch (e) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AdmPage(),
+      ),
+    );
+  } on FirebaseAuthException {
     String errorMessage = "Ocorreu um erro ao fazer login.";
   }
 }

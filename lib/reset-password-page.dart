@@ -1,13 +1,137 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
-import 'package:pato_burguer/assets/widgetsFunctions.dart';
+//import 'package:pato_burguer/assets/widgetsFunctions.dart';
 
-class ResetPassoword extends StatelessWidget {
+class ResetPassoword extends StatefulWidget {
   const ResetPassoword({super.key});
+
+  @override
+  State<ResetPassoword> createState() => _ResetPassowordState();
+}
+
+class _ResetPassowordState extends State<ResetPassoword> {
+  final _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text(
+                    "Link para sua resetar senha enviado! Verifique seu E-mail"),
+              ));
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text(e.message.toString()),
+              ));
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color(Constantes.corFundo.value),
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context, false),
+              icon: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+              )),
+          title: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              'Recuperação de Senha',
+              style: TextStyle(
+                  fontFamily: 'Roboto',
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 24),
+            ),
+          )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "lib/assets/recursos/pato-bolado-senha.png",
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25.0,
+            ),
+            child: Text(
+              "Insira seu E-mail e iremos lhe mandar um link para resetarmos sua senha",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          // textfield do email
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: TextField(
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+              ),
+              controller: _emailController,
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(20)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(Constantes.corFundo.value)),
+                      borderRadius: BorderRadius.circular(20)),
+                  hintText: "E-mail",
+                  fillColor: Colors.grey[150],
+                  filled: true),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          MaterialButton(
+            onPressed: passwordReset,
+            child: Text(
+              "Enviar",
+              style: TextStyle(
+                  fontFamily: 'Roboto',
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 24),
+            ),
+            color: Color(Constantes.corFundo.value),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+/*Scaffold(
       backgroundColor: Color(Constantes.corFundo.value),
       body: Stack(children: [
         AppBar(
@@ -141,5 +265,4 @@ class ResetPassoword extends StatelessWidget {
         ),
       ]),
     );
-  }
-}
+  }*/
