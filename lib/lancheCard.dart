@@ -16,7 +16,7 @@ class LancheCard extends StatelessWidget {
         color: Constantes.CorCardItem,
         child: Stack(
           children: [
-            Image.asset(item.image),
+            Image.asset(item.image ?? 'lib/assets/recursos/imagem_padrao.png'),
             Align(child: Text(item.nome), alignment: Alignment(0, 0.40)),
             Align(
               child: Text(

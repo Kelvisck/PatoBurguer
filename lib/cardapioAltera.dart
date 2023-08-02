@@ -2,43 +2,61 @@ import 'package:flutter/material.dart';
 import 'assets/constantes.dart';
 import 'models/Item_cardapio.dart';
 import 'lancheCard.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'main.dart';
 
-class AlteraCardapio extends StatefulWidget {
-  @override
-  State<AlteraCardapio> createState() => _AlteraCardapioState();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class _AlteraCardapioState extends State<AlteraCardapio> {
-  List<ItemCardapio> _itens = [
-    ItemCardapio(
-        'X-Pato Bac',
-        'Delicioso lanche, copia do MCDonalds',
-        'Molho, hamburguer, tomate e queijo',
-        20.0,
-        'carne',
-        'lib/assets/recursos/pato-bacon_solo.png'),
-    ItemCardapio(
-        'X-Lombo de pato',
-        'delicioso hamburguer de lombo de pato',
-        'Pão, hamburguer, lombo de pato e queijo',
-        22.00,
-        'carne',
-        'lib/assets/recursos/pato-bacon_solo.png'),
-    ItemCardapio(
-        'X-Lombo de pata',
-        'delicioso hamburguer de lombo de pato',
-        'Pão, hamburguer, lombo de pato e queijo',
-        22.00,
-        'carne',
-        'lib/assets/recursos/pato-bacon_solo.png'),
-    ItemCardapio(
-        'X-Lombo de pata',
-        'delicioso hamburguer de lombo de pato',
-        'Pão, hamburguer, lombo de pato e queijo',
-        22.00,
-        'carne',
-        'lib/assets/recursos/pato-bacon_solo.png')
-  ];
+  List<ItemCardapio> _itens = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _carregaDoFirebase();
+  }
+
+  void _carregaDoFirebase() async {
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.ref().child('item');
+
+    try {
+      DatabaseEvent event = await databaseRef.once();
+      DataSnapshot snapshot = event.snapshot;
+      if (snapshot.value == null) {
+        print("Dados do Firebase estão vazios.");
+        return;
+      }
+      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+      List<ItemCardapio> itens = [];
+
+      data.forEach((key, value) {
+        itens.add(ItemCardapio(
+          value['nome'] ?? '',
+          value['detalhe'] ?? '',
+          value['ingredientes'] ?? '',
+          (value['preco'] is int)
+              ? (value['preco'] as int).toDouble()
+              : (value['preco'] is double)
+                  ? value['preco']
+                  : 0.0,
+          value['tipo'] ?? '',
+          value['imagem'] ?? '',
+        ));
+      });
+
+      setState(() {
+        _itens = itens;
+      });
+    } catch (error) {
+      print("Erro ao carregar dados do Firebase: $error");
+    }
+  }
 
   void _adicionarLanche() {
     setState(() {
@@ -53,16 +71,18 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
       body: Stack(
         children: [
           Positioned(
-              top: 32,
-              left: 130,
-              child: Text(
-                'Alterar Cadápio',
-                style: TextStyle(
-                    fontFamily: 'Roboto',
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 24),
-              )),
+            top: 32,
+            left: 130,
+            child: Text(
+              'Alterar Cadápio',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 24,
+              ),
+            ),
+          ),
           Positioned(
             top: 80,
             child: Container(
@@ -70,10 +90,12 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 80,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(18),
-                      topRight: Radius.circular(18))),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(18),
+                  topRight: Radius.circular(18),
+                ),
+              ),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -90,9 +112,14 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
+}
+
+class AlteraCardapio extends StatefulWidget {
+  @override
+  State<AlteraCardapio> createState() => _AlteraCardapioState();
 }
