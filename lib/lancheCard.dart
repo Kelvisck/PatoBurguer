@@ -16,8 +16,15 @@ class LancheCard extends StatelessWidget {
         color: Constantes.CorCardItem,
         child: Stack(
           children: [
-            Image.asset(item.image ?? 'lib/assets/recursos/imagem_padrao.png'),
-            Align(child: Text(item.nome), alignment: Alignment(0, 0.40)),
+            Align(
+              alignment: Alignment(0, -0.7),
+              child: Image.asset(
+                item.image ?? 'lib/assets/recursos/imagem_padrao.png',
+                height: 114,
+                width: 134,
+              ),
+            ),
+            Align(child: Text(item.nome), alignment: Alignment(0, 0.52)),
             Align(
               child: Text(
                 'R\$',
@@ -26,14 +33,14 @@ class LancheCard extends StatelessWidget {
                     fontSize: 11,
                     fontWeight: FontWeight.w800),
               ),
-              alignment: Alignment(-0.5, 0.70),
+              alignment: Alignment(-0.5, 0.88),
             ),
             Align(
               child: Text(
                 item.preco.toString(),
                 style: TextStyle(fontSize: 20, color: Color(0xFF434343)),
               ),
-              alignment: Alignment(-0.1, 0.74),
+              alignment: Alignment(-0.1, 0.86),
             )
           ],
         ));
