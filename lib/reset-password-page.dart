@@ -66,8 +66,12 @@ class _ResetPassowordState extends State<ResetPassoword> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            "lib/assets/recursos/pato-bolado-senha.png",
+          SizedBox(
+            height: 250,
+            width: 250,
+            child: Image.asset(
+              "lib/assets/recursos/pato-bolado-senha.png",
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -83,7 +87,7 @@ class _ResetPassowordState extends State<ResetPassoword> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 09,
           ),
           // textfield do email
           Padding(
@@ -110,20 +114,23 @@ class _ResetPassowordState extends State<ResetPassoword> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 09,
           ),
-          MaterialButton(
-            onPressed: passwordReset,
-            child: Text(
-              "Enviar",
-              style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 24),
-            ),
-            color: Color(Constantes.corFundo.value),
-          )
+          ElevatedButton(
+              onPressed: passwordReset,
+              child: Text(
+                "Enviar",
+                style: TextStyle(
+                    fontFamily: 'Roboto',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 24),
+              ),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(Size(335, 45)),
+                backgroundColor:
+                    MaterialStatePropertyAll<Color>(Constantes.corFundo),
+              ))
         ],
       ),
     );
