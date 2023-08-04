@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pato_burguer/editarItem.dart';
 import 'assets/constantes.dart';
 import 'models/Item_cardapio.dart';
 import 'lancheCard.dart';
@@ -13,6 +14,15 @@ void main() async {
 }
 
 class _AlteraCardapioState extends State<AlteraCardapio> {
+  void _navegarParaEditar(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => editarItem(),
+      ),
+    );
+  }
+
   List<ItemCardapio> _itens = [];
 
   @override
@@ -105,7 +115,10 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
                 itemBuilder: (context, index) {
                   if (index < _itens.length) {
                     // Verifica se o índice é válido antes de retornar o LancheCard
-                    return LancheCard(_itens[index]);
+                    return LancheCard(
+                      _itens[index],
+                      onTap: () => _navegarParaEditar(context),
+                    );
                   } else {
                     return null;
                   }
