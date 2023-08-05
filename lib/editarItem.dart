@@ -33,7 +33,7 @@ class editarItem extends StatelessWidget {
                         topRight: Radius.circular(18))),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 104, bottom: 30, left: 30, right: 30),
+                      top: 104, bottom: 10, left: 30, right: 30),
                   //container dos texfield
                   child: Container(
                     //onde tudo fica empilhado
@@ -105,6 +105,7 @@ class editarItem extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              // ingredientes
                               SizedBox(
                                 height: 4,
                               ),
@@ -137,7 +138,36 @@ class editarItem extends StatelessWidget {
                                         border: InputBorder.none),
                                   ),
                                 ),
-                              )
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Align(
+                                alignment: Alignment(-1, -1),
+                                child: Text('Preço',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w800,
+                                        color: Color(0XFF434343))),
+                              ),
+                              Container(
+                                height: 34,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: Constantes.CorBorda,
+                                  width: 1.0,
+                                )),
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 10, left: 1),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        hintText: '00.00',
+                                        hintStyle: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            color: Color(0xFF898989))),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -145,7 +175,11 @@ class editarItem extends StatelessWidget {
                     ),
                   ),
                 ),
-              ))
+              )),
+          Align(
+            alignment: Alignment(0, -0.56),
+            child: Image.asset('lib/assets/recursos/pato-bacon_solo.png'),
+          )
         ],
       ),
     );
