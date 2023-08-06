@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/alterarContato.dart';
 import 'constantes.dart';
+import 'package:pato_burguer/editarItem.dart';
 
 Widget titulosApp(String texto) {
   return Text(
@@ -164,6 +165,34 @@ Widget butaoAdm(
             ),
           ),
         ],
+      ),
+    ),
+  );
+}
+
+//// editar item //////////////////////////////////////////////////
+
+Widget campoEditarItem(BuildContext context, controller, String hint) {
+  return Container(
+    height: 64,
+    width: MediaQuery.of(context).size.width,
+    decoration: BoxDecoration(
+        border: Border.all(
+      color: Constantes.CorBorda,
+      width: 1.0,
+    )),
+    child: Padding(
+      padding: EdgeInsets.only(top: 0, left: 1, right: 1),
+      child: TextField(
+        autofocus: true,
+        controller: controller,
+        decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(
+                fontWeight: FontWeight.w800, color: Color(0xFF898989)),
+            hintMaxLines: null,
+            alignLabelWithHint: true,
+            border: InputBorder.none),
       ),
     ),
   );

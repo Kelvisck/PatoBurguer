@@ -48,7 +48,7 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
       data.forEach((key, value) {
         itens.add(ItemCardapio(
             value['nome'] ?? '',
-            value['detalhe'] ?? '',
+            value['detalhes'] ?? '',
             value['ingredientes'] ?? '',
             (value['preco'] is int)
                 ? (value['preco'] as int).toDouble()

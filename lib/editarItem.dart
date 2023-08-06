@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
+import 'package:pato_burguer/assets/widgetsFunctions.dart';
 import 'models/Item_cardapio.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -162,30 +163,8 @@ class _editarItemState extends State<editarItem> {
                                         fontWeight: FontWeight.w800,
                                         color: Color(0XFF434343))),
                               ),
-                              Container(
-                                height: 64,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                  color: Constantes.CorBorda,
-                                  width: 1.0,
-                                )),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 0, left: 1, right: 1),
-                                  child: TextField(
-                                    controller: hintDetalhesController,
-                                    decoration: InputDecoration(
-                                        hintText: hintDetalhes,
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            color: Color(0xFF898989)),
-                                        hintMaxLines: null,
-                                        alignLabelWithHint: true,
-                                        border: InputBorder.none),
-                                  ),
-                                ),
-                              ),
+                              campoEditarItem(context, hintDetalhesController,
+                                  hintDetalhes),
                               // ingredientes
                               SizedBox(
                                 height: 4,
@@ -197,30 +176,9 @@ class _editarItemState extends State<editarItem> {
                                         fontWeight: FontWeight.w800,
                                         color: Color(0XFF434343))),
                               ),
-                              Container(
-                                height: 64,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                  color: Constantes.CorBorda,
-                                  width: 1.0,
-                                )),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 0, left: 1, right: 1),
-                                  child: TextField(
-                                    controller: hintIngredientesController,
-                                    decoration: InputDecoration(
-                                        hintText: hintIngredientes,
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            color: Color(0xFF898989)),
-                                        hintMaxLines: null,
-                                        alignLabelWithHint: true,
-                                        border: InputBorder.none),
-                                  ),
-                                ),
-                              ),
+                              //teste --------------------
+                              campoEditarItem(context,
+                                  hintIngredientesController, hintIngredientes),
                               SizedBox(
                                 height: 20,
                               ),
@@ -265,10 +223,10 @@ class _editarItemState extends State<editarItem> {
                 ),
               )),
           Align(
-            alignment: Alignment(0, -0.56),
+            alignment: Alignment(0, -0.58),
             child: SizedBox(
               width: 356, // Defina a largura máxima desejada
-              height: 314, // Defina a altura máxima desejada
+              height: 304, // Defina a altura máxima desejada
               child: Image.asset(
                   hintImagem), // Substitua 'hintImagem' pelo caminho da sua imagem
             ),
