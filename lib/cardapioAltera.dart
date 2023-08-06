@@ -14,11 +14,11 @@ void main() async {
 }
 
 class _AlteraCardapioState extends State<AlteraCardapio> {
-  void _navegarParaEditar(BuildContext context) {
+  void _navegarParaEditar(BuildContext context, ItemCardapio item) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => editarItem(),
+        builder: (context) => editarItem(item: item),
       ),
     );
   }
@@ -117,7 +117,7 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
                     // Verifica se o índice é válido antes de retornar o LancheCard
                     return LancheCard(
                       _itens[index],
-                      onTap: () => _navegarParaEditar(context),
+                      onTap: () => _navegarParaEditar(context, _itens[index]),
                     );
                   } else {
                     return null;

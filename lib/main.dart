@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         //home: AlterarContato(),
         //home: ResetPassword()
         //home: AdmPage(),
-        //home: AlteraCardapio());
-        home: editarItem());
+        home: AlteraCardapio());
+    //home: editarItem());
   }
 }

@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
+import 'models/Item_cardapio.dart';
 
 class editarItem extends StatelessWidget {
+  final ItemCardapio item;
+
+  editarItem({required this.item});
   @override
   Widget build(BuildContext context) {
+    final String hintNome = item.nome;
+    final String hintDetalhes = item.detalhes;
+    final String hintIngredientes = item.ingredientes;
+    final double hintPreco = item.preco;
+    final String hintImagem = item.image;
     return Scaffold(
       backgroundColor: Constantes.corFundo,
       body: Stack(
@@ -64,7 +73,7 @@ class editarItem extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 10, left: 1),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                        hintText: 'X-PATO-BAC',
+                                        hintText: hintNome,
                                         hintStyle: TextStyle(
                                             fontWeight: FontWeight.w800,
                                             color: Color(0xFF898989))),
@@ -95,7 +104,7 @@ class editarItem extends StatelessWidget {
                                       top: 0, left: 1, right: 1),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                        hintText: 'Detalhes',
+                                        hintText: hintDetalhes,
                                         hintStyle: TextStyle(
                                             fontWeight: FontWeight.w800,
                                             color: Color(0xFF898989)),
@@ -129,7 +138,7 @@ class editarItem extends StatelessWidget {
                                       top: 0, left: 1, right: 1),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                        hintText: 'Ingredientes',
+                                        hintText: hintIngredientes,
                                         hintStyle: TextStyle(
                                             fontWeight: FontWeight.w800,
                                             color: Color(0xFF898989)),
@@ -161,7 +170,7 @@ class editarItem extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 10, left: 1),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                        hintText: '00.00',
+                                        hintText: hintPreco.toString(),
                                         hintStyle: TextStyle(
                                             fontWeight: FontWeight.w800,
                                             color: Color(0xFF898989))),
@@ -178,7 +187,12 @@ class editarItem extends StatelessWidget {
               )),
           Align(
             alignment: Alignment(0, -0.56),
-            child: Image.asset('lib/assets/recursos/pato-bacon_solo.png'),
+            child: SizedBox(
+              width: 356, // Defina a largura máxima desejada
+              height: 314, // Defina a altura máxima desejada
+              child: Image.asset(
+                  hintImagem), // Substitua 'hintImagem' pelo caminho da sua imagem
+            ),
           )
         ],
       ),
