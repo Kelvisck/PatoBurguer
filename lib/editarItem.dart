@@ -1,18 +1,87 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'models/Item_cardapio.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class editarItem extends StatelessWidget {
+class editarItem extends StatefulWidget {
   final ItemCardapio item;
 
   editarItem({required this.item});
+
+  @override
+  State<editarItem> createState() => _editarItemState();
+}
+
+class _editarItemState extends State<editarItem> {
+  final TextEditingController hintNomeController = TextEditingController();
+  final TextEditingController hintDetalhesController = TextEditingController();
+  final TextEditingController hintIngredientesController =
+      TextEditingController();
+  final TextEditingController hintPrecoController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    hintNomeController.text = widget.item.nome;
+    hintDetalhesController.text = widget.item.detalhes;
+    hintIngredientesController.text = widget.item.ingredientes;
+    hintPrecoController.text = widget.item.preco.toString();
+  }
+
+  void atualizarItens() async {
+    String novoNome = hintNomeController.text;
+    String novoDetalhes = hintDetalhesController.text;
+    String novoIngredientes = hintIngredientesController.text;
+    double novoPreco = double.parse(hintPrecoController.text);
+
+    // Referência para o nó 'item'
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.reference().child('item');
+
+    try {
+      // Realizar a consulta para encontrar o nó com o nome correspondente
+      DatabaseEvent event = await databaseRef
+          .orderByChild('nome')
+          .equalTo(widget.item.nome)
+          .once();
+      DataSnapshot snapshot = event.snapshot;
+
+      // Verificar se o nó foi encontrado
+      if (snapshot.value != null) {
+        // Pegar a chave do nó encontrado
+        Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+        String chaveNodo = data.keys.first;
+
+        // Atualizar o objeto no Firebase usando a chave do nó encontrado
+        databaseRef.child(chaveNodo).update({
+          'nome': novoNome,
+          'detalhes': novoDetalhes,
+          'ingredientes': novoIngredientes,
+          'preco': novoPreco,
+          // Adicione aqui outros campos do objeto que deseja atualizar
+        });
+
+        // Navegar de volta para a tela anterior
+        Navigator.pop(context);
+      } else {
+        print('Item não encontrado no banco de dados.');
+      }
+    } catch (error) {
+      print('Erro ao consultar o banco de dados: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final String hintNome = item.nome;
-    final String hintDetalhes = item.detalhes;
-    final String hintIngredientes = item.ingredientes;
-    final double hintPreco = item.preco;
-    final String hintImagem = item.image;
+    final String hintNome = widget.item.nome;
+    final String hintDetalhes = widget.item.detalhes;
+    final String hintIngredientes = widget.item.ingredientes;
+    final double hintPreco = widget.item.preco;
+    final String hintImagem = widget.item.image;
     return Scaffold(
       backgroundColor: Constantes.corFundo,
       body: Stack(
@@ -45,7 +114,8 @@ class editarItem extends StatelessWidget {
                       top: 104, bottom: 10, left: 30, right: 30),
                   //container dos texfield
                   child: Container(
-                    //onde tudo fica empilhado
+                      //onde tudo fica empilhado
+                      child: SingleChildScrollView(
                     child: Stack(
                       children: [
                         Align(
@@ -72,6 +142,7 @@ class editarItem extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 10, left: 1),
                                   child: TextField(
+                                    controller: hintNomeController,
                                     decoration: InputDecoration(
                                         hintText: hintNome,
                                         hintStyle: TextStyle(
@@ -103,6 +174,7 @@ class editarItem extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       top: 0, left: 1, right: 1),
                                   child: TextField(
+                                    controller: hintDetalhesController,
                                     decoration: InputDecoration(
                                         hintText: hintDetalhes,
                                         hintStyle: TextStyle(
@@ -137,6 +209,7 @@ class editarItem extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       top: 0, left: 1, right: 1),
                                   child: TextField(
+                                    controller: hintIngredientesController,
                                     decoration: InputDecoration(
                                         hintText: hintIngredientes,
                                         hintStyle: TextStyle(
@@ -169,6 +242,7 @@ class editarItem extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 10, left: 1),
                                   child: TextField(
+                                    controller: hintPrecoController,
                                     decoration: InputDecoration(
                                         hintText: hintPreco.toString(),
                                         hintStyle: TextStyle(
@@ -177,12 +251,17 @@ class editarItem extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    atualizarItens();
+                                  },
+                                  child: Text('ENVIAR'))
                             ],
                           ),
                         ),
                       ],
                     ),
-                  ),
+                  )),
                 ),
               )),
           Align(

@@ -47,17 +47,16 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
 
       data.forEach((key, value) {
         itens.add(ItemCardapio(
-          value['nome'] ?? '',
-          value['detalhe'] ?? '',
-          value['ingredientes'] ?? '',
-          (value['preco'] is int)
-              ? (value['preco'] as int).toDouble()
-              : (value['preco'] is double)
-                  ? value['preco']
-                  : 0.0,
-          value['tipo'] ?? '',
-          value['imagem'] ?? '',
-        ));
+            value['nome'] ?? '',
+            value['detalhe'] ?? '',
+            value['ingredientes'] ?? '',
+            (value['preco'] is int)
+                ? (value['preco'] as int).toDouble()
+                : (value['preco'] is double)
+                    ? value['preco']
+                    : 0.0,
+            value['tipo'] ?? '',
+            value['imagem'] ?? ''));
       });
 
       setState(() {
@@ -68,12 +67,12 @@ class _AlteraCardapioState extends State<AlteraCardapio> {
     }
   }
 
-  void _adicionarLanche() {
+  /*void _adicionarLanche() {
     setState(() {
       _itens.add(ItemCardapio('Novo Lanche', 'DESC', 'ingredientes', 20.0,
           'carne', 'lib/assets/recursos/pato-bacon_solo.png'));
     });
-  }
+  }*/
 
   Widget build(BuildContext context) {
     return Scaffold(
