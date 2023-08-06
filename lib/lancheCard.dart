@@ -15,10 +15,13 @@ class LancheCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Constantes.CorCardItem,
+          ),
           //color: Constantes.CorCardItem,
           width: 135,
           height: 168.2,
-          color: Constantes.CorCardItem,
           child: Stack(
             children: [
               Align(

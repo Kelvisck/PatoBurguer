@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
+import 'package:pato_burguer/confirmaExcluir.dart';
 import 'models/Item_cardapio.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +24,16 @@ class _editarItemState extends State<editarItem> {
       TextEditingController();
   final TextEditingController hintPrecoController = TextEditingController();
 
+  //--------------------------------------- funcao que permite exibir o dialogo na tela, onde vai confirmar a exclusao
+  void _exibirConfirmacaoExclusao(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ConfirmarExclusao();
+      },
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -39,12 +50,11 @@ class _editarItemState extends State<editarItem> {
     String novoIngredientes = hintIngredientesController.text;
     double novoPreco = double.parse(hintPrecoController.text);
 
-    // Referência para o nó 'item'
+    //  aqui faz a referência para o nó 'item'
     DatabaseReference databaseRef =
         FirebaseDatabase.instance.reference().child('item');
 
     try {
-      // Realizar a consulta para encontrar o nó com o nome correspondente
       DatabaseEvent event = await databaseRef
           .orderByChild('nome')
           .equalTo(widget.item.nome)
@@ -63,10 +73,8 @@ class _editarItemState extends State<editarItem> {
           'detalhes': novoDetalhes,
           'ingredientes': novoIngredientes,
           'preco': novoPreco,
-          // Adicione aqui outros campos do objeto que deseja atualizar
         });
 
-        // Navegar de volta para a tela anterior
         Navigator.pop(context);
       } else {
         print('Item não encontrado no banco de dados.');
@@ -115,121 +123,143 @@ class _editarItemState extends State<editarItem> {
                       top: 104, bottom: 10, left: 30, right: 30),
                   //container dos texfield
                   child: Container(
+                      padding: EdgeInsets.only(top: 20),
                       //onde tudo fica empilhado
                       child: SingleChildScrollView(
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment(-1, -1),
-                          child: Text('Nome',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  color: Color(0XFF434343))),
-                        ),
-                        Align(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                height: 34,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                  color: Constantes.CorBorda,
-                                  width: 1.0,
-                                )),
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 1),
-                                  child: TextField(
-                                    controller: hintNomeController,
-                                    decoration: InputDecoration(
-                                        hintText: hintNome,
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            color: Color(0xFF898989))),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment(-1, -1),
+                              child: Text('Nome',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: Color(0XFF434343))),
+                            ),
+                            Align(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
                                   ),
-                                ),
-                              ),
-                              // detalhes
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Align(
-                                alignment: Alignment(-1, 0),
-                                child: Text('Detalhes',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0XFF434343))),
-                              ),
-                              campoEditarItem(context, hintDetalhesController,
-                                  hintDetalhes),
-                              // ingredientes
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Align(
-                                alignment: Alignment(-1, 0),
-                                child: Text('Ingredientes',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0XFF434343))),
-                              ),
-                              //teste --------------------
-                              campoEditarItem(context,
-                                  hintIngredientesController, hintIngredientes),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Align(
-                                alignment: Alignment(-1, -1),
-                                child: Text('Preço',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0XFF434343))),
-                              ),
-                              Container(
-                                height: 34,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                  color: Constantes.CorBorda,
-                                  width: 1.0,
-                                )),
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 1),
-                                  child: TextField(
-                                    controller: hintPrecoController,
-                                    decoration: InputDecoration(
-                                        hintText: hintPreco.toString(),
-                                        hintStyle: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            color: Color(0xFF898989))),
+                                  Container(
+                                    height: 34,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                      color: Constantes.CorBorda,
+                                      width: 1.0,
+                                    )),
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 10, left: 1),
+                                      child: TextField(
+                                        controller: hintNomeController,
+                                        decoration: InputDecoration(
+                                            hintText: hintNome,
+                                            hintStyle: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                color: Color(0xFF898989))),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  // detalhes
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Align(
+                                    alignment: Alignment(-1, 0),
+                                    child: Text('Detalhes',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            color: Color(0XFF434343))),
+                                  ),
+                                  campoEditarItem(context,
+                                      hintDetalhesController, hintDetalhes),
+                                  // ingredientes
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Align(
+                                    alignment: Alignment(-1, 0),
+                                    child: Text('Ingredientes',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            color: Color(0XFF434343))),
+                                  ),
+                                  //teste --------------------
+                                  campoEditarItem(
+                                      context,
+                                      hintIngredientesController,
+                                      hintIngredientes),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Align(
+                                    alignment: Alignment(-1, -1),
+                                    child: Text('Preço',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            color: Color(0XFF434343))),
+                                  ),
+                                  Container(
+                                    height: 34,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                      color: Constantes.CorBorda,
+                                      width: 1.0,
+                                    )),
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 10, left: 1),
+                                      child: TextField(
+                                        controller: hintPrecoController,
+                                        decoration: InputDecoration(
+                                            hintText: hintPreco.toString(),
+                                            hintStyle: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                color: Color(0xFF898989))),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        atualizarItens();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Constantes.corFundo),
+                                      child: Text('SALVAR'))
+                                ],
                               ),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    atualizarItens();
-                                  },
-                                  child: Text('ENVIAR'))
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  )),
+                      )),
                 ),
               )),
-          Align(
-            alignment: Alignment(0, -0.58),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.14,
+            left: MediaQuery.of(context).size.width * 0.5 - 178,
             child: SizedBox(
-              width: 356, // Defina a largura máxima desejada
-              height: 304, // Defina a altura máxima desejada
-              child: Image.asset(
-                  hintImagem), // Substitua 'hintImagem' pelo caminho da sua imagem
+              width: 356,
+              height: 304,
+              child: Image.asset(hintImagem),
             ),
+          ),
+          Positioned(
+            child: IconButton(
+                onPressed: () {
+                  _exibirConfirmacaoExclusao(context);
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                )),
+            top: 20,
+            left: 360,
           )
         ],
       ),
