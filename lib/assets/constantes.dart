@@ -7,6 +7,7 @@ class Constantes {
   static const Color CorfundoBranca = Color(0xFFFFFFFF);
   static const Color CorTexto1 = Color(0xFFFFB54B);
   static const Color CorBorda = Color(0XFF747474);
+  static const Color CorCardItem = Color(0xFFFFCB82);
 
   //textos
 

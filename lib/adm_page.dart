@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/alterarContato.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
+import 'package:pato_burguer/cardapioAltera.dart';
+import 'package:pato_burguer/change-password-page.dart';
+import 'package:pato_burguer/reset-password-page.dart';
 import './assets/constantes.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
 
@@ -51,11 +54,11 @@ class AdmPage extends StatelessWidget {
           left: 34,
         ),
         // ----------- botao 1 --------------------------------------------------//
-        /*Positioned(
+        Positioned(
             top: 232,
             left: 70,
             child: butaoAdm('Alterar Cardápio',
-                'lib/assets/recursos/cardapio.png', context, cardapioAltera())),*/
+                'lib/assets/recursos/cardapio.png', context, AlteraCardapio())),
 
         // botao 2  -------------------------------------------------------------//
 
@@ -66,12 +69,13 @@ class AdmPage extends StatelessWidget {
                 'lib/assets/recursos/contato.png', context, AlterarContato())),
 
         //----------------botao 3 ---------------------------
-        /* Positioned(
+        Positioned(
             top: 392,
             left: 70,
-            child: butaoAdm('Alterar Senha', 'lib/assets/recursos/config.png', context, reset-password-page())),*/
+            child: butaoAdm('Alterar Senha', 'lib/assets/recursos/config.png',
+                context, ChangePassword())),
 
-            // Obs. Alencar: Trocar ResetPassowrd() por ChangePassword(), é a página de alterar senha, a reset é a do 'esqueci a senha'
+        // Obs. Alencar: Trocar ResetPassowrd() por ChangePassword(), é a página de alterar senha, a reset é a do 'esqueci a senha'
       ],
     ));
   }

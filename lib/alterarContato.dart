@@ -1,8 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:pato_burguer/assets/constantes.dart';
 import 'package:pato_burguer/assets/widgetsFunctions.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'main.dart';
 
-class AlterarContato extends StatelessWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+class AlterarContato extends StatefulWidget {
+  @override
+  State<AlterarContato> createState() => _AlterarContatoState();
+}
+
+class _AlterarContatoState extends State<AlterarContato> {
+  String endereco = '';
+  String cidade = '';
+  String segSex = '';
+  String sabado = '';
+  String domFeriados = '';
+  String whatsapp = '';
+  String facebook = '';
+  String instagram = '';
+  bool isEditing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _carregaDoFirebase();
+  }
+
+  void _carregaDoFirebase() async {
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.ref().child('contato');
+
+    try {
+      DatabaseEvent event = await databaseRef.once();
+      DataSnapshot snapshot = event.snapshot;
+      if (snapshot.value == null) {
+        print("Dados do Firebase estão vazios.");
+        return;
+      }
+      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+
+      setState(() {
+        endereco = data['endereco'] ?? '';
+        segSex = data['horarioSegSext'] ?? '';
+        sabado = data['horarioSabadp'] ?? '';
+        domFeriados = data['horarioDomFer'] ?? '';
+        whatsapp = data['whatsapp'] ?? '';
+        facebook = data['facebook'] ?? '';
+        instagram = data['instagram'] ?? '';
+      });
+    } catch (error) {
+      print("Erro ao carregar dados do Firebase: $error");
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(Constantes.corFundo.value),
@@ -65,7 +122,7 @@ class AlterarContato extends StatelessWidget {
                                       Align(
                                         alignment: Alignment(-1, -0.7),
                                         child: Text(
-                                          'AV. Campo Grande, 66',
+                                          endereco,
                                           style: TextStyle(
                                               color: Constantes.CorTexto1,
                                               fontFamily: 'Roboto',
@@ -73,10 +130,17 @@ class AlterarContato extends StatelessWidget {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: Image.asset(
-                                              'lib/assets/recursos/editar.png')),
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isEditing = true;
+                                          });
+                                        },
+                                        child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Image.asset(
+                                                'lib/assets/recursos/editar.png')),
+                                      ),
                                       Align(
                                         alignment: Alignment.bottomLeft,
                                         child: Text(
@@ -104,17 +168,16 @@ class AlterarContato extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              CamposEditarHorario(
-                                  'Segunda à sexta', '18:00 - 01:00'),
+                              CamposEditarHorario('Segunda à sexta', segSex),
                               SizedBox(
                                 height: 5,
                               ),
-                              CamposEditarHorario('Sábado', '18:00 - 03:00'),
+                              CamposEditarHorario('Sábado', sabado),
                               SizedBox(
                                 height: 5,
                               ),
                               CamposEditarHorario(
-                                  'Domingos e Feriados', '18:00 - 00:00'),
+                                  'Domingos e Feriados', domFeriados),
                               SizedBox(
                                 height: 10,
                               ),
@@ -126,8 +189,8 @@ class AlterarContato extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              redesSociais('lib/assets/recursos/whatsapp.png',
-                                  '(67) 40028922'),
+                              redesSociais(
+                                  'lib/assets/recursos/whatsapp.png', whatsapp),
                               SizedBox(
                                 height: 15,
                               ),
@@ -138,13 +201,13 @@ class AlterarContato extends StatelessWidget {
                               SizedBox(
                                 height: 18,
                               ),
-                              redesSociais('lib/assets/recursos/facebook.png',
-                                  'PatoBurguerOficial'),
+                              redesSociais(
+                                  'lib/assets/recursos/facebook.png', facebook),
                               SizedBox(
                                 height: 10,
                               ),
                               redesSociais('lib/assets/recursos/instagram.png',
-                                  '@patoburguer'),
+                                  instagram),
                               SizedBox(
                                 height: 24,
                               ),
