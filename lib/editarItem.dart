@@ -25,14 +25,6 @@ class _editarItemState extends State<editarItem> {
   final TextEditingController hintPrecoController = TextEditingController();
 
   //--------------------------------------- funcao que permite exibir o dialogo na tela, onde vai confirmar a exclusao
-  void _exibirConfirmacaoExclusao(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return ConfirmarExclusao();
-      },
-    );
-  }
 
   @override
   void initState() {
@@ -63,7 +55,7 @@ class _editarItemState extends State<editarItem> {
 
       // Verificar se o nó foi encontrado
       if (snapshot.value != null) {
-        // Pegar a chave do nó encontrado
+        // Pega a chave do nó encontrado
         Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
         String chaveNodo = data.keys.first;
 
@@ -81,6 +73,29 @@ class _editarItemState extends State<editarItem> {
       }
     } catch (error) {
       print('Erro ao consultar o banco de dados: $error');
+    }
+  }
+
+  void _exibirConfirmacaoExclusao(BuildContext context) async {
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.reference().child('item');
+
+    DatabaseEvent event =
+        await databaseRef.orderByChild('nome').equalTo(widget.item.nome).once();
+    DataSnapshot snapshot = event.snapshot;
+
+    // Verificar se o nó foi encontrado
+    if (snapshot.value != null) {
+      // Pega a chave do nó encontrado
+      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+      String chaveNodo = data.keys.first;
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ConfirmarExclusao(chave: chaveNodo);
+        },
+      );
     }
   }
 
