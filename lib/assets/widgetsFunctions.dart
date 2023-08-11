@@ -24,7 +24,8 @@ Widget textoSimples(String texto, double tamanhoFonte) {
   );
 }
 
-Widget CamposEditarHorario(String textoDia, String textoHorario) {
+Widget CamposEditarHorario(
+    String textoDia, String textoHorario, VoidCallback onEditPressed) {
   return Container(
     decoration: BoxDecoration(
         border: Border.all(
@@ -42,10 +43,13 @@ Widget CamposEditarHorario(String textoDia, String textoHorario) {
           alignment: Alignment(0.60, 0),
           child: textoSimples(textoHorario, 12),
         ),
-        Align(
-          alignment: Alignment(0.99, 0),
-          child: Image.asset('lib/assets/recursos/editar.png'),
-        )
+        GestureDetector(
+          onTap: onEditPressed,
+          child: Align(
+            alignment: Alignment(0.99, 0),
+            child: Image.asset('lib/assets/recursos/editar.png'),
+          ),
+        ),
       ],
     ),
   );

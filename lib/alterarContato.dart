@@ -25,7 +25,7 @@ class _AlterarContatoState extends State<AlterarContato> {
   String whatsapp = '';
   String facebook = '';
   String instagram = '';
-  bool isEditing = false;
+  bool isEditingE = false;
 
   @override
   void initState() {
@@ -58,6 +58,56 @@ class _AlterarContatoState extends State<AlterarContato> {
     } catch (error) {
       print("Erro ao carregar dados do Firebase: $error");
     }
+  }
+
+  TextEditingController _controlador = TextEditingController();
+  TextEditingController _enderecoController = TextEditingController();
+  TextEditingController _horarioSegController = TextEditingController();
+  TextEditingController _horarioSabController = TextEditingController();
+  TextEditingController _horarioDomController = TextEditingController();
+  TextEditingController _whatsAppController = TextEditingController();
+
+  void _onEditCampoPressed(String texto) {
+    setState(() {
+      isEditingE = true;
+      //controller.text = texto;
+    });
+  }
+
+  Widget _buildEditableField(TextEditingController controller) {
+    return isEditingE
+        ? _buildTextField(controller.text, controller)
+        : _buildText(controller.text);
+  }
+
+  Widget _buildText(String texto) {
+    return Text(texto,
+        style: TextStyle(
+            fontSize: 12,
+            fontFamily: 'Roboto',
+            color: Constantes.CorTexto1,
+            fontWeight: FontWeight.w600));
+  }
+
+  Widget _buildTextField(String texto, TextEditingController controller) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: TextField(
+        controller: controller,
+        style: TextStyle(
+            fontSize: 12,
+            fontFamily: 'Roboto',
+            color: Constantes.CorTexto1,
+            fontWeight: FontWeight.w600),
+        decoration: InputDecoration(),
+        onSubmitted: (newValue) {
+          setState(() {
+            isEditingE = false;
+            // Atualize os dados ou faça qualquer ação necessária com o novo valor (newValue)
+          });
+        },
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
@@ -120,20 +170,19 @@ class _AlterarContatoState extends State<AlterarContato> {
                                   child: Stack(
                                     children: [
                                       Align(
-                                        alignment: Alignment(-1, -0.7),
-                                        child: Text(
-                                          endereco,
-                                          style: TextStyle(
-                                              color: Constantes.CorTexto1,
-                                              fontFamily: 'Roboto',
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      InkWell(
+                                          alignment: Alignment(-1, -0.7),
+                                          child: Text(endereco,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily: 'Roboto',
+                                                  color: Constantes.CorTexto1,
+                                                  fontWeight:
+                                                      FontWeight.w600))),
+                                      GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            isEditing = true;
+                                            isEditingE = true;
+                                            _enderecoController.text = endereco;
                                           });
                                         },
                                         child: Align(
@@ -168,16 +217,20 @@ class _AlterarContatoState extends State<AlterarContato> {
                               SizedBox(
                                 height: 10,
                               ),
-                              CamposEditarHorario('Segunda à sexta', segSex),
+                              CamposEditarHorario('Segunda à sexta', segSex,
+                                  () => _onEditCampoPressed(segSex)),
                               SizedBox(
                                 height: 5,
                               ),
-                              CamposEditarHorario('Sábado', sabado),
+                              CamposEditarHorario('Sábado', sabado,
+                                  () => _onEditCampoPressed(segSex)),
                               SizedBox(
                                 height: 5,
                               ),
                               CamposEditarHorario(
-                                  'Domingos e Feriados', domFeriados),
+                                  'Domingos e Feriados',
+                                  domFeriados,
+                                  () => _onEditCampoPressed(segSex)),
                               SizedBox(
                                 height: 10,
                               ),
