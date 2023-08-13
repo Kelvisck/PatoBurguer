@@ -1,5 +1,3 @@
-/*ESSA È A BRANCH MAIN*/
-
 import 'package:flutter/material.dart';
 //import 'package:pato_burguer/TelaLog.dart';
 //import 'package:pato_burguer/adm_page.dart';
@@ -42,8 +40,9 @@ class MyApp extends StatelessWidget {
     //Color minhaCor = const Color(0xFFFF9B0D);
     return MaterialApp(
       title: "PatoBurguer",
-      //home: logPage(),
-      home: AlterarContato(),
+      debugShowCheckedModeBanner: false,
+      home: logPage(),
+      //home: AlterarContato(),
       //home: ChangePassword()
       //home: AdmPage(),
       //home: ResetPassoword(),
